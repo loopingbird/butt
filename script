@@ -36,18 +36,17 @@ Image = <string> - The icon of the notification.
 Time = <number> - The duration of the notfication.
 ]]
 
-MoneyTab:AddButton({
+Tab:AddButton({
 	Name = "Button!",
 	Callback = function()
-		local args = {
-			[1] = workspace.HitParts.Snow1,
-			[2] = "Snow8",
-			[3] = "MagicWand"
-		}
-		
-		game:GetService("ReplicatedStorage").Events.e8eGb8RgRXFcug8q:FireServer(unpack(args))
+      		print("button pressed")
   	end    
 })
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
 
 
 
