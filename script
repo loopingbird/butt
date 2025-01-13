@@ -19,17 +19,34 @@ OrionLib:MakeNotification({
 	Time = 5
 })
 
+local isRunning = false -- Flag to track the toggle state
+
 Tab:AddToggle({
     Name = "This is america",
     Default = false,
     Callback = function(Value)
-        local args = {
-            [1] = "Guard1x", 
-            [2] = Value      
-}
-game:GetService("ReplicatedStorage").Remotes.Functions.JoinRole:InvokeServer(unpack(args))
-    end    
+        isRunning = Value -- Update the flag based on the toggle state
+
+        if isRunning then
+            -- Start a loop that repeats until the toggle is turned off
+            spawn(function()
+                while isRunning do
+                    -- Your repeated code
+                    local args = {
+                        [1] = "Guard1x",
+                        [2] = true
+                    }
+
+                    game:GetService("ReplicatedStorage").Remotes.Functions.JoinRole:InvokeServer(unpack(args))
+
+                    -- Add a small delay to prevent infinite loop from freezing the game
+                    task.wait(1) -- Adjust the delay as needed
+                end
+            end)
+        end
+    end
 })
+
 
 
 OrionLib:Init()
