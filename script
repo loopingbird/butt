@@ -1,10 +1,6 @@
-local player = game.Players.LocalPlayer
-
-
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
-
 
 local Tab = Window:MakeTab({
 	Name = "Tab 1",
@@ -12,26 +8,28 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-
 local Section = Tab:AddSection({
 	Name = "Section"
 })
 
-
 OrionLib:MakeNotification({
-	Name = "Title!",
+	Name = "So your neck hurts",
 	Content = "Notification content... what will it say??",
 	Image = "rbxassetid://4483345998",
 	Time = 5
 })
 
-
-Tab:AddButton({
-	Name = "Button!",
-	Callback = function()
-      		print("button pressed")
-  	end    
+Tab:AddToggle({
+    Name = "This is america",
+    Default = false,
+    Callback = function(Value)
+        local args = {
+            [1] = "Guard1x", 
+            [2] = Value      
+}
+game:GetService("ReplicatedStorage").Remotes.Functions.JoinRole:InvokeServer(unpack(args))
+    end    
 })
 
 
-
+OrionLib:Init()
